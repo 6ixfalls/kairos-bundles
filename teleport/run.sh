@@ -21,7 +21,7 @@ getConfig() {
     # Remove the quotes wrapping the value.
     _value=${_value:1:${#_value}-2}
     if [ "${_value}" != "null" ]; then
-     echo "${$_value}"
+     echo "${_value}"
     fi 
     echo   
 }
@@ -45,6 +45,6 @@ readConfig() {
 mkdir -p "${TELEPORT_CONFIG_DIR}"
 
 readConfig
-templ "VALUES" "${VALUES}" "assets/teleport.yaml"
 
+templ "VALUES" "${VALUES}" "assets/teleport.yaml"
 cp -rf assets/teleport.yaml "/etc/teleport.yaml"
