@@ -25,6 +25,7 @@ jobs:
       matrix:
         bundles:
           - teleport
+          - consul
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
