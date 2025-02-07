@@ -21,7 +21,7 @@ getConfig() {
     # Remove the quotes wrapping the value.
     _value=${_value:1:${#_value}-2}
     if [ "${_value}" != "null" ]; then
-     echo "$($_value)"
+     echo "${$_value}"
     fi 
     echo   
 }
