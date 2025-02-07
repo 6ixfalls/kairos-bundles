@@ -28,13 +28,6 @@ getConfig() {
 
 VALUES="{}"
 
-templ() {
-    local file="$3"
-    local value=$2
-    local sentinel=$1
-    sed -i "s/@${sentinel}@/${value}/g" "${file}"
-}
-
 readConfig() {
     _values=$(getConfig teleport)
     if [ "$_values" != "" ]; then
@@ -46,5 +39,4 @@ mkdir -p "${TELEPORT_CONFIG_DIR}"
 
 readConfig
 
-templ "VALUES" "${VALUES}" "assets/teleport.yaml"
-cp -rf assets/teleport.yaml "/etc/teleport.yaml"
+echo "${VALUES}" > "/etc/teleport.yaml"

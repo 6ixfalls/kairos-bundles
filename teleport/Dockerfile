@@ -17,4 +17,3 @@ FROM scratch
 COPY --from=build teleport tctl tsh tbot /
 COPY teleport.service /
 COPY run.sh /
-COPY ./assets /assets
