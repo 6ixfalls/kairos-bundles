@@ -10,7 +10,7 @@ RUN DOWNLOAD_FILE="/tmp/teleport-v${VERSION}-linux-amd64-bin.tar.gz" && \
       echo "Checksum does not match"; \
       exit 1; \
     fi && \
-    tar xzf "${DOWNLOAD_FILE}" teleport -C / && \
+    tar xzf "${DOWNLOAD_FILE}" --strip=1 -C / && \
     rm "${DOWNLOAD_FILE}"
 
 FROM scratch
