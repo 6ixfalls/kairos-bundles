@@ -2,7 +2,7 @@ VERSION 0.6
 FROM alpine
 ARG BUNDLE
 ARG VERSION="latest"
-ARG IMAGE_REPOSITORY=ghcr.io/6ifalls/kairos-bundles
+ARG IMAGE_REPOSITORY=ghcr.io/6ixfalls/kairos-bundles
 
 # renovate: datasource=docker depName=renovate/renovate versioning=docker
 ARG RENOVATE_VERSION=37
