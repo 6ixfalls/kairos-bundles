@@ -26,6 +26,7 @@ jobs:
         bundles:
           - teleport
           - consul
+          - tailscale
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
