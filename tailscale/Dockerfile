@@ -1,7 +1,7 @@
 FROM alpine AS build
 RUN apk add --no-cache zip
 
-# renovate: datasource=github-releases depName=hashicorp/consul
+# renovate: datasource=github-releases depName=tailscale/tailscale
 ENV VERSION=1.80.0
 ENV CHECKSUM=083b1fccbc7c34a6e284ada8b28cb6e832669b9f86cfe1efc31cb2530cff016b
 
