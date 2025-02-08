@@ -32,7 +32,7 @@ getConfig() {
 }
 
 PORT="41641"
-DAEMOG_FLAGS=""
+DAEMON_FLAGS=""
 UP_ARGS=""
 
 readConfig() {
@@ -42,7 +42,7 @@ readConfig() {
     fi
     _flags=$(getConfig tailscale.daemon-flags)
     if [ "$_flags" != "" ]; then
-        DAEMOG_FLAGS=$_flags
+        DAEMON_FLAGS=$_flags
     fi
     _accept_dns=$(getConfig tailscale.accept-dns)
     if [ "$_accept_dns" != "" ]; then
@@ -71,7 +71,7 @@ readConfig
 mkdir -p /etc/default
 
 tmpl "PORT" "${PORT}" "assets/tailscaled.env"
-tmpl "DAEMOG_FLAGS" "${DAEMOG_FLAGS}" "assets/tailscaled.env"
+tmpl "DAEMON_FLAGS" "${DAEMON_FLAGS}" "assets/tailscaled.env"
 cp -f "assets/tailscaled.env" "/etc/default/tailscaled"
 
 echo "Waiting for tailscale to be Running"
