@@ -83,7 +83,7 @@ while :; do
     break
   elif [ "${TAILSCALE_BACKEND_STATE}" == "Stopped" ] || [ "${TAILSCALE_BACKEND_STATE}" == "NoState" ]; then
     echo "Starting tailscale"
-    /usr/local/sbin/tailscale up ${UP_ARGS} || true
+    /usr/local/sbin/tailscale up "${UP_ARGS}" || true
   fi
 done
 
