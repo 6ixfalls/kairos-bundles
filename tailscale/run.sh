@@ -69,6 +69,7 @@ readConfig() {
     if [ "$_extra_flags" != "" ]; then
         # Split extra_flags into an array and append each element
         IFS=' ' read -ra extra_flags_array <<< "$_extra_flags"
+        # shellcheck disable=SC2206
         UP_ARGS+=(${extra_flags_array[@]})
     fi
 }
