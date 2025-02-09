@@ -82,13 +82,13 @@ cp -f "assets/tailscaled.env" "/etc/default/tailscaled"
 echo "Waiting for tailscale to be Running"
 while :; do
   sleep 2
-  TAILSCALE_BACKEND_STATE="$(tailscale status -json | grep -o '"BackendState": "[^"]*"' | cut -d '"' -f 4)"
+  TAILSCALE_BACKEND_STATE="$(${bin}tailscale status -json | grep -o '"BackendState": "[^"]*"' | cut -d '"' -f 4)"
   if [ "${TAILSCALE_BACKEND_STATE}" == "Running" ]; then
     echo "Tailscale is up"
     break
-  elif [ "${TAILSCALE_BACKEND_STATE}" == "Stopped" ] || [ "${TAILSCALE_BACKEND_STATE}" == "NoState" ]; then
+  else
     echo "Starting tailscale"
-    /usr/local/sbin/tailscale up "${UP_ARGS}" || true
+    ${bin}tailscale up "${UP_ARGS}" || true
   fi
 done
 
