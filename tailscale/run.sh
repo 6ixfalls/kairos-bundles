@@ -45,15 +45,15 @@ readConfig() {
     if [ "$_port" != "" ]; then
         PORT=$_port
     fi
-    _flags=$(getConfig "tailscale.daemon-flags")
+    _flags=$(getConfig "tailscale.daemon_flags")
     if [ "$_flags" != "" ]; then
         DAEMON_FLAGS=$_flags
     fi
-    _accept_dns=$(getConfig "tailscale.accept-dns")
+    _accept_dns=$(getConfig "tailscale.accept_dns")
     if [ "$_accept_dns" != "" ]; then
         UP_ARGS="${UP_ARGS} --accept-dns=${_accept_dns}"
     fi
-    _auth_key=$(getConfig "tailscale.auth-key")
+    _auth_key=$(getConfig "tailscale.auth_key")
     if [ "$_auth_key" != "" ]; then
         UP_ARGS="${UP_ARGS} --authkey=${_auth_key}"
     fi
@@ -65,7 +65,7 @@ readConfig() {
     if [ "$_hostname" != "" ]; then
         UP_ARGS="${UP_ARGS} --hostname=${_hostname}"
     fi
-    _extra_flags=$(getConfig "tailscale.extra-flags")
+    _extra_flags=$(getConfig "tailscale.extra_flags")
     if [ "$_extra_flags" != "" ]; then
         UP_ARGS="${UP_ARGS} ${_extra_flags:-}"
     fi

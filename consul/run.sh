@@ -45,11 +45,11 @@ readConfig() {
     if [ "$_main" != "" ]; then
         MAIN=$_main
     fi
-    _server=$(getConfig "consul-server")
+    _server=$(getConfig "consul_server")
     if [ "$_server" != "" ]; then
         SERVER=$_server
     fi
-    _client=$(getConfig "consul-agent")
+    _client=$(getConfig "consul_agent")
     if [ "$_client" != "" ]; then
         CLIENT=$_client
     fi
