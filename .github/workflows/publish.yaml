@@ -24,7 +24,6 @@ jobs:
     strategy:
       matrix:
         bundles:
-          - teleport
           - consul
           - tailscale
     steps:
