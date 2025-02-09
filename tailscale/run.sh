@@ -27,9 +27,7 @@ templ() {
 
 getConfig() {
     local key=$1
-    _value=$(kairos-agent config get "${key} | @json" | tr -d '\n')
-    # Remove the quotes wrapping the value.
-    _value=${_value:1:-1}
+    _value=$(kairos-agent config get "${key}" | tr -d '\n')
     if [ "${_value}" != "null" ]; then
      echo "${_value}"
     fi 
@@ -68,9 +66,8 @@ readConfig() {
     _extra_flags=$(getConfig "tailscale.extra_flags")
     if [ "$_extra_flags" != "" ]; then
         # Split extra_flags into an array and append each element
-        IFS=' ' read -ra extra_flags_array <<< "$_extra_flags"
-        # shellcheck disable=SC2206
-        UP_ARGS+=(${extra_flags_array[@]})
+        IFS=' ' read -ra extra_flags_array <<< "${_extra_flags}"
+        UP_ARGS+=("${extra_flags_array[@]}")
     fi
 }
 
