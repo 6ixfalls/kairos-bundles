@@ -1,6 +1,11 @@
 #!/bin/bash
-
 set -ex
+
+if [ -z "$BASH_VERSION" ]
+then
+    exec /bin/bash "$0" "$@"
+    exit
+fi
 
 # Install consul
 bin=/usr/local/bin/
