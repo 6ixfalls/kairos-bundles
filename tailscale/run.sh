@@ -14,7 +14,7 @@ system=/etc/systemd/system/
 mkdir -p "${bin}"
 cp tailscale tailscaled "${bin}"
 cp tailscaled.service "${system}"
-systemctl enable tailscaled.service --now
+systemctl enable tailscaled.service
 
 # Template files
 
@@ -81,6 +81,7 @@ templ "PORT" "${PORT}" "assets/tailscaled.env"
 templ "DAEMON_FLAGS" "${DAEMON_FLAGS}" "assets/tailscaled.env"
 cp -f "assets/tailscaled.env" "/etc/default/tailscaled"
 
+systemctl start tailscaled.service
 echo "Waiting for tailscale to be Running"
 while :; do
   sleep 2
