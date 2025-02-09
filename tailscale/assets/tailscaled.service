@@ -5,7 +5,8 @@ Wants=network-pre.target
 After=network-pre.target NetworkManager.service systemd-resolved.service
 
 [Service]
-EnvironmentFile=/etc/default/tailscaled
+Environment="PORT=41641"
+EnvironmentFile=-/etc/default/tailscaled
 ExecStart=/usr/local/sbin/tailscaled --state=/var/lib/tailscale/tailscaled.state --socket=/run/tailscale/tailscaled.sock --port=${PORT} $FLAGS
 ExecStopPost=/usr/local/sbin/tailscaled --cleanup
 
