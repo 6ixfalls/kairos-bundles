@@ -18,4 +18,4 @@ RUN DOWNLOAD_FILE="/tmp/tailscale_${VERSION}_amd64.tgz" && \
 FROM scratch
 COPY --from=build tailscale tailscaled /usr/local/sbin/
 COPY ./assets/tailscaled.* /usr/local/lib/systemd/system/
-COPY ./assets/release /usr/lib/extension-release.d/extension-release.tailscale-${VERSION}
+COPY ./assets/release /usr/lib/extension-release.d/extension-release.tailscale
