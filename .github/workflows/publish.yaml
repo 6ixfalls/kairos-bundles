@@ -51,4 +51,5 @@ jobs:
       - uses: earthly/actions-setup@v1
         with:
           version: "latest"
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - run: earthly --ci --push +build --BUNDLE=${{ matrix.bundles }}
