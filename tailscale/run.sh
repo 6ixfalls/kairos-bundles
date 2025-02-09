@@ -91,7 +91,7 @@ while :; do
     break
   else
     echo "Starting tailscale"
-    ${bin}tailscale up ${UP_ARGS[@]} || true
+    ${bin}tailscale up "${UP_ARGS[@]}" || true
   fi
 done
 
