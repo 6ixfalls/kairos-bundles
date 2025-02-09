@@ -19,7 +19,7 @@ getConfig() {
     local key=$1
     _value=$(kairos-agent config get "${key} | @json" | tr -d '\n')
     # Remove the quotes wrapping the value.
-    _value=${_value:1:${#_value}-2}
+    _value=${_value:1:-1}
     if [ "${_value}" != "null" ]; then
      echo "${_value}"
     fi 
