@@ -2,7 +2,7 @@
 
 set -ex
 
-# Install teleport
+# Install tailscale
 bin=/usr/local/sbin/
 system=/etc/systemd/system/
 

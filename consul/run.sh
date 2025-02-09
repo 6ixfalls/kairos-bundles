@@ -3,7 +3,7 @@
 set -ex
 
 # Install consul
-bin=/usr/bin/
+bin=/usr/local/bin/
 system=/etc/systemd/system/
 
 mkdir -p "${bin}"
