@@ -3,7 +3,7 @@ set -ex
 
 if [ -z "$BASH_VERSION" ]
 then
-    exec /bin/bash "$0" "$@"
+    exec /bin/bash "$0" "$@" 2>&1
     exit
 fi
 
