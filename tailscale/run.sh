@@ -75,8 +75,8 @@ readConfig
 
 mkdir -p /etc/default
 
-tmpl "PORT" "${PORT}" "assets/tailscaled.env"
-tmpl "DAEMON_FLAGS" "${DAEMON_FLAGS}" "assets/tailscaled.env"
+templ "PORT" "${PORT}" "assets/tailscaled.env"
+templ "DAEMON_FLAGS" "${DAEMON_FLAGS}" "assets/tailscaled.env"
 cp -f "assets/tailscaled.env" "/etc/default/tailscaled"
 
 echo "Waiting for tailscale to be Running"
