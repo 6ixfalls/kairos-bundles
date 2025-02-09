@@ -3,7 +3,7 @@ set -ex
 
 if [ -z "$BASH_VERSION" ]
 then
-    exec /bin/bash "$0" "$@" 2>&1
+    /bin/bash "$0" "$@"
     exit
 fi
 
@@ -38,7 +38,7 @@ getConfig() {
 
 PORT="41641"
 DAEMON_FLAGS=""
-UP_ARGS=""
+UP_ARGS=()
 
 readConfig() {
     _port=$(getConfig "tailscale.port")
@@ -51,23 +51,25 @@ readConfig() {
     fi
     _accept_dns=$(getConfig "tailscale.accept_dns")
     if [ "$_accept_dns" != "" ]; then
-        UP_ARGS="${UP_ARGS} --accept-dns=${_accept_dns}"
+        UP_ARGS+=("--accept-dns=${_accept_dns}")
     fi
     _auth_key=$(getConfig "tailscale.auth_key")
     if [ "$_auth_key" != "" ]; then
-        UP_ARGS="${UP_ARGS} --authkey=${_auth_key}"
+       UP_ARGS+="--authkey=${_auth_key}")
     fi
     _routes=$(getConfig "tailscale.routes")
     if [ "$_routes" != "" ]; then
-        UP_ARGS="${UP_ARGS} --advertise-routes=${_routes}"
+        UP_ARGS+="--advertise-routes=${_routes}")
     fi
     _hostname=$(getConfig "tailscale.hostname")
     if [ "$_hostname" != "" ]; then
-        UP_ARGS="${UP_ARGS} --hostname=${_hostname}"
+        UP_ARGS+=("--hostname=${_hostname}")
     fi
     _extra_flags=$(getConfig "tailscale.extra_flags")
     if [ "$_extra_flags" != "" ]; then
-        UP_ARGS="${UP_ARGS} ${_extra_flags:-}"
+        # Split extra_flags into an array and append each element
+        IFS=' ' read -ra extra_flags_array <<< "$_extra_flags"
+        UP_ARGS+=("${extra_flags_array[@]}")
     fi
 }
 
@@ -88,7 +90,7 @@ while :; do
     break
   else
     echo "Starting tailscale"
-    ${bin}tailscale up "${UP_ARGS}" || true
+    ${bin}tailscale up "${UP_ARGS[@]}" || true
   fi
 done
 
