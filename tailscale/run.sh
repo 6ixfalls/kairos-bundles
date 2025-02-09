@@ -14,7 +14,7 @@ system=/etc/systemd/system/
 mkdir -p "${bin}"
 cp tailscale tailscaled "${bin}"
 cp tailscaled.service "${system}"
-systemctl enable tailscaled.service
+systemctl enable tailscaled.service --now
 
 # Template files
 
@@ -55,11 +55,11 @@ readConfig() {
     fi
     _auth_key=$(getConfig "tailscale.auth_key")
     if [ "$_auth_key" != "" ]; then
-       UP_ARGS+="--authkey=${_auth_key}")
+       UP_ARGS+=("--authkey=${_auth_key}")
     fi
     _routes=$(getConfig "tailscale.routes")
     if [ "$_routes" != "" ]; then
-        UP_ARGS+="--advertise-routes=${_routes}")
+        UP_ARGS+=("--advertise-routes=${_routes}")
     fi
     _hostname=$(getConfig "tailscale.hostname")
     if [ "$_hostname" != "" ]; then

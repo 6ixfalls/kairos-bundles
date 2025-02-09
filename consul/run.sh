@@ -72,3 +72,5 @@ if [ "$CLIENT" != "{}" ]; then
     echo "${CLIENT}" > "/etc/consul.d/agent.hcl"
     chmod 640 /etc/consul.d/agent.hcl
 fi
+
+systemctl start consul.service
