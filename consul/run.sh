@@ -51,7 +51,7 @@ readConfig() {
 }
 
 mkdir -p "${CONSUL_CONFIG_DIR}"
-chown -r consul:consul /etc/consul.d
+chown --recursive consul:consul /etc/consul.d
 
 readConfig
 
