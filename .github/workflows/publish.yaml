@@ -24,7 +24,6 @@ jobs:
     strategy:
       matrix:
         bundles:
-          - consul
           - tailscale
     steps:
       - name: Checkout repository
