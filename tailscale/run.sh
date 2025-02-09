@@ -29,7 +29,7 @@ getConfig() {
     local key=$1
     _value=$(kairos-agent config get "${key} | @json" | tr -d '\n')
     # Remove the quotes wrapping the value.
-    _value="${_value:1:-1}"
+    _value=${_value:1:-1}
     if [ "${_value}" != "null" ]; then
      echo "${_value}"
     fi 
@@ -41,31 +41,31 @@ DAEMON_FLAGS=""
 UP_ARGS=""
 
 readConfig() {
-    _port=$(getConfig tailscale.port)
+    _port=$(getConfig "tailscale.port")
     if [ "$_port" != "" ]; then
         PORT=$_port
     fi
-    _flags=$(getConfig tailscale.daemon-flags)
+    _flags=$(getConfig "tailscale.daemon-flags")
     if [ "$_flags" != "" ]; then
         DAEMON_FLAGS=$_flags
     fi
-    _accept_dns=$(getConfig tailscale.accept-dns)
+    _accept_dns=$(getConfig "tailscale.accept-dns")
     if [ "$_accept_dns" != "" ]; then
         UP_ARGS="${UP_ARGS} --accept-dns=${_accept_dns}"
     fi
-    _auth_key=$(getConfig tailscale.auth-key)
+    _auth_key=$(getConfig "tailscale.auth-key")
     if [ "$_auth_key" != "" ]; then
         UP_ARGS="${UP_ARGS} --authkey=${_auth_key}"
     fi
-    _routes=$(getConfig tailscale.routes)
+    _routes=$(getConfig "tailscale.routes")
     if [ "$_routes" != "" ]; then
         UP_ARGS="${UP_ARGS} --advertise-routes=${_routes}"
     fi
-    _hostname=$(getConfig tailscale.hostname)
+    _hostname=$(getConfig "tailscale.hostname")
     if [ "$_hostname" != "" ]; then
         UP_ARGS="${UP_ARGS} --hostname=${_hostname}"
     fi
-    _extra_flags=$(getConfig tailscale.extra-flags)
+    _extra_flags=$(getConfig "tailscale.extra-flags")
     if [ "$_extra_flags" != "" ]; then
         UP_ARGS="${UP_ARGS} ${_extra_flags:-}"
     fi

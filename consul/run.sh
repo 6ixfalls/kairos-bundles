@@ -29,7 +29,7 @@ getConfig() {
     local key=$1
     _value=$(kairos-agent config get "${key} | @json" | tr -d '\n')
     # Remove the quotes wrapping the value.
-    _value="${_value:1:-1}"
+    _value=${_value:1:-1}
     if [ "${_value}" != "null" ]; then
      echo "${_value}"
     fi 
@@ -41,15 +41,15 @@ SERVER="{}"
 CLIENT="{}"
 
 readConfig() {
-    _main=$(getConfig consul)
+    _main=$(getConfig "consul")
     if [ "$_main" != "" ]; then
         MAIN=$_main
     fi
-    _server=$(getConfig consul-server)
+    _server=$(getConfig "consul-server")
     if [ "$_server" != "" ]; then
         SERVER=$_server
     fi
-    _client=$(getConfig consul-agent)
+    _client=$(getConfig "consul-agent")
     if [ "$_client" != "" ]; then
         CLIENT=$_client
     fi
